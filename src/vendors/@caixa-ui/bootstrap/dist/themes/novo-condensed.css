@@ -1,0 +1,44 @@
+nav.bg-caixa-2017
+{
+    background-image: url(../img/bg_header.jpg);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 1926px 72px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    padding-top: 0px;
+    margin-top: 0px;
+}
+
+nav a.logo_caixa
+{
+  background-image: url(../img/logo_caixa.png);
+  display: block;
+  height: 65px;
+  margin: -13px 0 0 -12px;
+  overflow: hidden;
+  position: relative;
+  text-indent: -999em;
+  width: 85px; 
+  padding-bottom: 0px;
+} 
+
+.nav-item .active
+{
+  border-bottom: 5px solid #FFB600;
+}
+
+.navbar-nav > li > a {
+	color: #d2d2d2;
+	border-bottom: 5px solid #256cb8;
+	-webkit-transition: color .5s ease, border-bottom-color .5s ease;
+	-moz-transition: color .5s ease, border-bottom-color .5s ease;
+	transition: color .5s ease, border-bottom-color .5s ease;
+}
+
+.navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+	border-bottom: 5px solid #FFB600;
+	-webkit-transition: color .5s ease, border-bottom-color .5s ease;
+	-moz-transition: color .5s ease, border-bottom-color .5s ease;
+	transition: color .5s ease, border-bottom-color .5s ease;
+}

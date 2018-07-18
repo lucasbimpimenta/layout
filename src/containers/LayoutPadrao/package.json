@@ -1,0 +1,6 @@
+{
+  "name": "LayoutPadrao",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./LayoutPadrao.js"
+}
