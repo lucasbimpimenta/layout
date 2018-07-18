@@ -28,8 +28,17 @@ nav a.logo_caixa
   border-bottom: 5px solid #FFB600;
 }
 
+@media (min-width: 992px){
+  .navbar-expand-lg .navbar-nav .nav-link 
+  {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
 .navbar-nav > li > a {
-	color: #d2d2d2;
+	color: #FFFFFF;
+  line-height: 2;
+ 
 	border-bottom: 5px solid #256cb8;
 	-webkit-transition: color .5s ease, border-bottom-color .5s ease;
 	-moz-transition: color .5s ease, border-bottom-color .5s ease;
