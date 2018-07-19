@@ -1,8 +1,86 @@
 import React, { Component } from 'react';
+import { 
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem } from 'reactstrap';
+import PropTypes from 'prop-types';
+
+const menus_permitidos = [
+    {
+        title: 'Atendimento',
+        endereco: null,
+        ordem: 2,
+        filhos: [
+                {
+                    title: 'Solicitação',
+                    endereco: '#/atendimento/solicitacao'
+                },
+                {
+                    title: 'Atendimentos',
+                    endereco: '#/atendimento/atendimentos'
+                }
+            ]
+    },
+    {
+        title: 'Início',
+        endereco: '#/inicio',
+        ordem: 1,
+        filhos: []
+    },
+];
 
 class CabecalhoPadrao extends Component {
-  render() {
-    return (
+    constructor(props) {
+        super(props);
+
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            isOpen: false,
+            menus_permitidos,
+        };
+    }
+
+    toggle() 
+    {
+        this.setState({
+            isOpen: !this.state.isOpen
+     });
+    }
+    render() {
+        return (
+            <Navbar expand="lg" dark fixed className="bg-primary bg-caixa-2017">
+                <NavbarBrand href="/" className="logo_caixa">&nbsp;</NavbarBrand>
+                <NavbarToggler onClick={this.toggle} />
+                <Collapse isOpen={this.state.isOpen} navbar>
+                    <Nav className="mr-auto" navbar>
+                    {this.state.menus_permitidos.sort(function(a, b) { return a.ordem - b.ordem; }).map(item =>
+                        () => {item.filhos && item.filhos.length > 0 ? (
+                            <UncontrolledDropdown nav inNavbar>
+                                <DropdownToggle nav caret>
+                                    {item.title}
+                                </DropdownToggle>
+                                <DropdownMenu right>
+
+                                </DropdownMenu>
+                            </UncontrolledDropdown>
+                        ) : (
+                             <NavItem>
+                                <NavLink href={item.endereco}>{item.title}</NavLink>
+                            </NavItem>
+                        )}
+                    )}
+                    </Nav>
+                </Collapse>
+            </Navbar>
+        /*
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-caixa-2017" >
             <a href="" class="navbar-brand logo_caixa">Caixa</a>
 
@@ -10,42 +88,10 @@ class CabecalhoPadrao extends Component {
                 aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse" id="navbarBootstrapTiNegocios">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link cx-style-setter" href="" cx-style="cosmo">Início
-                            <span class="sr-only">(current)</span>
-                        </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dropdown
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </li>
-                </ul>
-                <ul class="navbar-nav navbar-right">
-                    <li>
-                        <a data-toggle="collapse" href="#nav-login" aria-expanded="false" aria-controls="nav-login">
-                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <a data-toggle="collapse" href="#nav-buscar" aria-expanded="false" aria-controls="nav-buscar">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
         </nav>
-    );
-  }
+        */
+        );
+    }
 }
 
-export default CabecalhoPadrao;
+    export default CabecalhoPadrao;

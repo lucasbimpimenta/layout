@@ -1,4 +1,4 @@
-nav.bg-caixa-2017
+.bg-caixa-2017
 {
     background-image: url(../img/bg_header.jpg);
     background-position: top;
@@ -8,24 +8,42 @@ nav.bg-caixa-2017
     margin-bottom: 0px;
     padding-top: 0px;
     margin-top: 0px;
+    color: #FFFFFF;
 }
 
-nav a.logo_caixa
+.logo_caixa_old
 {
   background-image: url(../img/logo_caixa.png);
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 0 -20px;
   display: block;
-  height: 65px;
-  margin: -13px 0 0 -12px;
   overflow: hidden;
   position: relative;
-  text-indent: -999em;
-  width: 85px; 
+  width: 65px; 
   padding-bottom: 0px;
+  color: #FFFFFF;
+  
+ 
+} 
+
+.logo_caixa
+{
+  background-image: url(../img/logo_caixa.png);
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 0 -18px;
+  width: 65px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  height: 40px;
 } 
 
 .nav-item .active
 {
-  border-bottom: 5px solid #FFB600;
+  border-bottom: 5px solid transparent;
 }
 
 @media (min-width: 992px){
@@ -37,16 +55,16 @@ nav a.logo_caixa
 }
 .navbar-nav > li > a {
 	color: #FFFFFF;
-  line-height: 2;
+  line-height: 1.5;
  
-	border-bottom: 5px solid #256cb8;
+	border-bottom: 3px solid #256cb8;
 	-webkit-transition: color .5s ease, border-bottom-color .5s ease;
 	-moz-transition: color .5s ease, border-bottom-color .5s ease;
 	transition: color .5s ease, border-bottom-color .5s ease;
 }
 
 .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
-	border-bottom: 5px solid #FFB600;
+	border-bottom: 3px solid #FFB600;
 	-webkit-transition: color .5s ease, border-bottom-color .5s ease;
 	-moz-transition: color .5s ease, border-bottom-color .5s ease;
 	transition: color .5s ease, border-bottom-color .5s ease;
