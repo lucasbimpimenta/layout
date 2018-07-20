@@ -5,7 +5,6 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import 'bootstrap/dist/css/bootstrap.css';
 import './vendors/@caixa-ui/bootstrap/dist/themes/cosmo.css';
 import './vendors/@caixa-ui/bootstrap/dist/themes/novo-condensed.css';
 

@@ -4,38 +4,11 @@ import {
   Navbar,
   NavbarToggler,
   NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem } from 'reactstrap';
-import PropTypes from 'prop-types';
+  Nav
+ } from 'reactstrap';
 
-const menus_permitidos = [
-    {
-        title: 'Atendimento',
-        endereco: null,
-        ordem: 2,
-        filhos: [
-                {
-                    title: 'Solicitação',
-                    endereco: '#/atendimento/solicitacao'
-                },
-                {
-                    title: 'Atendimentos',
-                    endereco: '#/atendimento/atendimentos'
-                }
-            ]
-    },
-    {
-        title: 'Início',
-        endereco: '#/inicio',
-        ordem: 1,
-        filhos: []
-    },
-];
+
+import Menu from './Menu';
 
 class CabecalhoPadrao extends Component {
     constructor(props) {
@@ -43,8 +16,7 @@ class CabecalhoPadrao extends Component {
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isOpen: false,
-            menus_permitidos,
+            isOpen: false
         };
     }
 
@@ -61,37 +33,12 @@ class CabecalhoPadrao extends Component {
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="mr-auto" navbar>
-                    {this.state.menus_permitidos.sort(function(a, b) { return a.ordem - b.ordem; }).map(item =>
-                        () => {item.filhos && item.filhos.length > 0 ? (
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    {item.title}
-                                </DropdownToggle>
-                                <DropdownMenu right>
-
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                        ) : (
-                             <NavItem>
-                                <NavLink href={item.endereco}>{item.title}</NavLink>
-                            </NavItem>
-                        )}
-                    )}
+                        <Menu/>
                     </Nav>
-                </Collapse>
+                </Collapse> 
             </Navbar>
-        /*
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary bg-caixa-2017" >
-            <a href="" class="navbar-brand logo_caixa">Caixa</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarBootstrapTiNegocios" aria-controls="navbarBootstrapTiNegocios"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </nav>
-        */
         );
     }
 }
 
-    export default CabecalhoPadrao;
+export default CabecalhoPadrao;

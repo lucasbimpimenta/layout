@@ -1,0 +1,40 @@
+{
+  "menus": [
+        {
+            "title": "Atendimento",
+            "endereco": null,
+            "ordem": 2,
+            "filhos": [
+                    {
+                        "title": "Solicitação",
+                        "endereco": "#/atendimento/solicitacao"
+                    },
+                    {
+                        "title": "Atendimento",
+                        "endereco": "#/atendimento/atendimentos"
+                    }
+                ]
+        },
+        {
+            "title": "Administrativo",
+            "endereco": null,
+            "ordem": 3,
+            "filhos": [
+                    {
+                        "title": "Gestão de Pessoas",
+                        "endereco": "#/administrativo/pessoas"
+                    },
+                    {
+                        "title": "Documentos",
+                        "endereco": "#/administrativo/documentos"
+                    }
+                ]
+        },
+        {
+            "title": "Início",
+            "endereco": "#/inicio",
+            "ordem": 1,
+            "filhos": []
+        }
+    ]
+}
