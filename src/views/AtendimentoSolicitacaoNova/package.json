@@ -1,0 +1,6 @@
+{
+  "name": "AtendimentoSolicitacaoNova",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./AtendimentoSolicitacaoNova.js"
+}

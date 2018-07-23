@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import {withRouter, Link, Route} from 'react-router-dom';
+import { matchRoutes, renderRoutes } from 'react-router-config'
 
 import routes from '../../routes';
 
-const findRouteName = (url) => {
-    const objs = routes.filter(obj => {
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+const findRouteName = (rotas, url) => {
+    const objs = rotas.filter(obj => {
         return obj.path === url
     });
 
-    console.log(objs);
+   // console.log(objs);
 
-    return objs.length ? objs[0].name : url;
+    return objs.length ? objs[0].name : url.replace("/","").capitalizeFirstLetter();
 };
 
 const getPaths = (pathname) => {
@@ -29,9 +34,12 @@ const getPaths = (pathname) => {
   };
 
   const BreadcrumbsItem = ({ match }) => {
-    const routeName = findRouteName(match.url);
 
-    console.log(routeName);
+    const routeName = findRouteName(routes, match.url);
+
+   const tem_link = routes.filter(obj => {
+        return obj.path === match.url
+    });
   
     if (routeName) {
       return (
@@ -40,11 +48,14 @@ const getPaths = (pathname) => {
             <li className="active">{routeName}</li>
           ) :
           (
+            (tem_link.length) ?
             <li>
               <Link to={match.url || ''}>
                 {routeName}
               </Link>
             </li>
+            :
+            <li>{routeName}</li>
           )
       );
     }
@@ -65,6 +76,7 @@ class CaixaBreadcrumb extends Component {
 
         return (
             <Breadcrumb>
+                <b>Você está em:&nbsp;</b>
                 {paths.map(p => <Route path={p} component={BreadcrumbsItem} />)}
             </Breadcrumb>
         )
