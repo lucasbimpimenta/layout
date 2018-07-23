@@ -12,12 +12,33 @@ const Dashboard = Loadable({
   loading: Loading,
 });
 
+const AtendimentoSolicitacao = Loadable({
+  loader: () => import('./views/AtendimentoSolicitacao'),
+  loading: Loading,
+});
+
+const AtendimentoSolicitacaoNova = Loadable({
+  loader: () => import('./views/AtendimentoSolicitacaoNova'),
+  loading: Loading,
+});
+
 // https://github.com/ReactTraining/react-router/tree/master/packages/react-router-config
 const routes = [
   { path: '/', exact: true, name: 'Inicio', component: LayoutPadrao },
   { path: '/inicio', name: 'Início', component: Dashboard },
-  { path: '/atendimento/solicitacao', name: 'Solicitação', component: Dashboard },
-  { path: '/atendimento/solicitacao/nova', name: 'Nova Solicitação', component: Dashboard },
+  { 
+    path: '/atendimento/solicitacao', 
+    name: 'Solicitação', 
+    component: AtendimentoSolicitacao,
+    routes: 
+    [
+      { 
+        path: '/atendimento/solicitacao/nova',
+        component: AtendimentoSolicitacaoNova,
+        name: 'Nova Solicitação'
+      }
+    ]
+  },
 ];
 
 export default routes;

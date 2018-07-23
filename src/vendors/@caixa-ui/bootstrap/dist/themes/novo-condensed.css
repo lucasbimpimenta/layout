@@ -69,3 +69,60 @@
 	-moz-transition: color .5s ease, border-bottom-color .5s ease;
 	transition: color .5s ease, border-bottom-color .5s ease;
 }
+
+.breadcrumb
+{
+  font-size: 12px;
+  padding: 0.6rem 01rem;
+  background-color: #ffffff;
+  margin-bottom: 0px;
+}
+
+.breadcrumb li + li:not(:first-child):before {
+  color: #0039ba;
+    content: "";
+    display: inline-block;
+    font-family: FontAwesome;
+    font-feature-settings: normal;
+    font-kerning: auto;
+    font-language-override: normal;
+    font-size: inherit;
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-synthesis: weight style;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding: 0 5px;
+    text-rendering: auto;
+}
+
+.titulo
+{
+    color: #b3c7cb;
+    border-bottom: 1px solid #d0e0e3;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px;
+    padding-bottom: 6px;
+    padding-left: 1rem;
+    width: 100%;
+    
+}
+
+.menu_interno_caixa li
+{
+  background-color: #f9f9f9;
+  margin-bottom: 1px;
+  font-size:13px;
+  border-left: 3px solid #256cb8;
+}
+
+.menu_interno_caixa li:hover, .menu_interno_caixa li:focus, .menu_interno_caixa li.active
+{
+  border-left: 3px solid #FFB600;
+	-webkit-transition: color .5s ease, border-bottom-color .5s ease;
+	-moz-transition: color .5s ease, border-bottom-color .5s ease;
+	transition: color .5s ease, border-bottom-color .5s ease;
+}
