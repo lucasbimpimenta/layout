@@ -10,13 +10,15 @@ String.prototype.capitalizeFirstLetter = function() {
 }
 
 const findRouteName = (rotas, url) => {
-    const objs = rotas.filter(obj => {
-        return obj.path === url
+
+    const objs = matchRoutes(rotas,url)
+    const matches = objs.filter(obj => {
+        return obj.match.isExact
     });
 
-   // console.log(objs);
+    console.log(matches);
 
-    return objs.length ? objs[0].name : url.replace("/","").capitalizeFirstLetter();
+    return matches.length == 1 ? matches[0].route.name : url.replace("/","").capitalizeFirstLetter();
 };
 
 const getPaths = (pathname) => {
@@ -77,7 +79,7 @@ class CaixaBreadcrumb extends Component {
         return (
             <Breadcrumb>
                 <b>Você está em:&nbsp;</b>
-                {paths.map(p => <Route path={p} component={BreadcrumbsItem} />)}
+                {paths.map((p, i) => <Route key={i} path={p} component={BreadcrumbsItem} />)}
             </Breadcrumb>
         )
     }

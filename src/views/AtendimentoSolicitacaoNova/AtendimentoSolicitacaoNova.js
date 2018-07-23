@@ -11,7 +11,7 @@ class AtendimentoSolicitacaoNova extends Component {
         return (
             <div>
                 <Row>
-                    <h4 class="titulo">Nova Solicitação</h4>
+                    <h4 className="titulo">Nova Solicitação</h4>
                 </Row>
                 <Row>
                     <Col sm="12">

@@ -23,7 +23,7 @@ class AtendimentoSolicitacao extends Component {
         return (
             <div>
                 <Row>
-                    <h3 class="titulo">Solicitação</h3>
+                    <h3 className="titulo">Solicitação</h3>
                 </Row>
                 <Row>
                     <Col sm="2">

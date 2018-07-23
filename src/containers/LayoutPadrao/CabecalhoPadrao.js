@@ -28,7 +28,7 @@ class CabecalhoPadrao extends Component {
     }
     render() {
         return (
-            <Navbar expand="lg" dark fixed className="bg-primary bg-caixa-2017">
+            <Navbar expand="lg" dark fixed="top" className="bg-primary bg-caixa-2017">
                 <NavbarBrand href="/" className="logo_caixa">&nbsp;</NavbarBrand>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
