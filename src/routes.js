@@ -16,7 +16,6 @@ const Dashboard = Loadable({
 const routes = [
   { path: '/', exact: true, name: 'Inicio', component: LayoutPadrao },
   { path: '/inicio', name: 'Início', component: Dashboard },
-  { path: '/atendimento', name: 'Atendimento', component: Dashboard },
   { path: '/atendimento/solicitacao', name: 'Solicitação', component: Dashboard },
   { path: '/atendimento/solicitacao/nova', name: 'Nova Solicitação', component: Dashboard },
 ];
