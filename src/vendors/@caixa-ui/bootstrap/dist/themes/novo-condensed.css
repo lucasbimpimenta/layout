@@ -1,3 +1,7 @@
+body, input, option, select{
+  font-size:12px;
+}
+
 .bg-caixa-2017
 {
     background-image: url(../img/bg_header.jpg);
@@ -56,6 +60,7 @@
 .navbar-nav > li > a {
 	color: #FFFFFF;
   line-height: 1.5;
+  font-size:15px;
  
 	border-bottom: 3px solid #256cb8;
 	-webkit-transition: color .5s ease, border-bottom-color .5s ease;
@@ -123,6 +128,11 @@ h4.titulo
     
 }
 
+.menu_interno_caixa
+{
+  margin-bottom:10px;
+}
+
 .menu_interno_caixa li
 {
   background-color: #f9f9f9;
@@ -142,4 +152,28 @@ h4.titulo
 .app-body
 {
   padding-top:41px;
+}
+
+.wizard-container .card-wizard .card-title, .wizard-container .card-wizard .card-subtitle
+{
+  display: none;
+}
+
+.label-caixa-form {
+    color: #54bbab;
+    font-size: 13px;
+    font-weight: 400;
+    margin: 0;
+}
+
+input[type=text].input-caixa, .select-caixa {
+    border: none;
+    border-bottom: 1px solid #3ec1ae;
+    font-family: futura-lt-book;
+    padding: 10px;
+    width: 100%;
+}
+.select-caixa {
+    color: #54bbab;
+    margin-right: 39px;
 }

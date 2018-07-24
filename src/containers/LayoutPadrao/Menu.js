@@ -12,7 +12,7 @@ import axios from 'axios';
 
 const PATH_BASE = ' http://localhost:3001/menus';
 
-const imprimeMenu = (item) => {
+const imprimeMenu = (item, key) => {
     if(item.filhos && item.filhos.length > 0)
     {
         return (
@@ -21,8 +21,8 @@ const imprimeMenu = (item) => {
                 {item.title}
             </DropdownToggle>
             <DropdownMenu right>
-            {item.filhos.sort(function(a, b) { return a.ordem - b.ordem; }).map(filho =>
-               <DropdownItem tag="a" href={filho.endereco}>{filho.title}</DropdownItem>
+            {item.filhos.sort(function(a, b) { return a.ordem - b.ordem; }).map((filho, idx) =>
+               <DropdownItem key={idx} tag="a" href={filho.endereco}>{filho.title}</DropdownItem>
             )}
             </DropdownMenu>
         </UncontrolledDropdown>
@@ -66,8 +66,8 @@ class Menu extends Component {
 
         return (
 
-            this.state.menus_permitidos.sort(function(a, b) { return a.ordem - b.ordem; }).map(item =>
-               imprimeMenu(item)
+            this.state.menus_permitidos.sort(function(a, b) { return a.ordem - b.ordem; }).map((item, idx) =>
+               imprimeMenu(item, idx)
             )
         );
     }

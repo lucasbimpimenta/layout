@@ -37,4 +37,57 @@
             "filhos": []
         }
     ]
+    ,"solicitacoes-categorias": 
+    [
+        {
+            "value": 1,
+            "label": "Engenharia",
+            "ordem": 1,
+            "options": 
+            [
+                {
+                    "label": "Nova Vistoria",
+                    "ordem": 1
+                }
+            ]
+        },
+        {
+            "value": 2,
+            "label": "Empreendimentos",
+            "ordem": 2,
+            "options": 
+            [
+                {
+                    "label": "Alocação",
+                    "value": 1,
+                    "options": 
+                    [
+                        {
+                            "label": "Contratação",
+                            "value": 1
+                        },
+                        {
+                            "label": "Liberação de Recursos",
+                            "value": 1
+                        }
+                    ]
+                },
+                {
+                    "label": "Teste",
+                    "value": 1,
+                    "options": 
+                    [
+                        {
+                            "label": "Teste 1",
+                            "value": 1
+                        },
+                        {
+                            "label": "Teste 2",
+                            "value": 1
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

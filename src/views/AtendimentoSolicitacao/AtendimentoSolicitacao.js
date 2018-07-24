@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col, Nav, NavItem, NavLink, Badge, Container } from 'reactstrap';
-import { matchRoutes, renderRoutes } from 'react-router-config'
-import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
+import { matchRoutes } from 'react-router-config'
+import { Route, Switch, withRouter } from 'react-router-dom';
 
 // routes config
 import routes from '../../routes';
@@ -10,16 +10,24 @@ class AtendimentoSolicitacao extends Component {
     constructor(props) {
         super(props);
 
-        const { match, location, history } = this.props
+        this.setRota = this.setRota.bind(this);
+
+        const { location } = this.props
         //const branch = matchRoutes(routes, location.pathname)
 
         this.state = { rota: null, branch: matchRoutes(routes, location.pathname) };
     }
 
+    setRota(rotas) {
+        this.setState({ rota: rotas });
+    }
+
+    componentWillMount() {
+        this.setRota(this.state.branch[0].route.routes)
+    }
+
     render() {
         
-        this.state.rota = this.state.branch[0].route.routes;
-
         return (
             <div>
                 <Row>

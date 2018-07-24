@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Breadcrumb } from 'reactstrap';
 import {withRouter, Link, Route} from 'react-router-dom';
-import { matchRoutes, renderRoutes } from 'react-router-config'
+import { matchRoutes } from 'react-router-config'
 
 import routes from '../../routes';
 
-String.prototype.capitalizeFirstLetter = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
+const capitalizeFirstLetter = (text) => {
+   return text.charAt(0).toUpperCase() + text.slice(1);
 }
 
 const findRouteName = (rotas, url) => {
@@ -16,9 +16,9 @@ const findRouteName = (rotas, url) => {
         return obj.match.isExact
     });
 
-    console.log(matches);
+    //console.log(matches);
 
-    return matches.length == 1 ? matches[0].route.name : url.replace("/","").capitalizeFirstLetter();
+    return matches.length === 1 ? matches[0].route.name : capitalizeFirstLetter(url.replace("/",""));
 };
 
 const getPaths = (pathname) => {
@@ -66,13 +66,10 @@ const getPaths = (pathname) => {
   
 
 class CaixaBreadcrumb extends Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         
-        const { match, location, history } = this.props
+        const { location } = this.props
 
         const paths = getPaths(location.pathname);
 
