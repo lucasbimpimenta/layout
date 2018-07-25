@@ -37,57 +37,70 @@
             "filhos": []
         }
     ]
-    ,"solicitacoes-categorias": 
+    ,"categorias": 
     [
         {
             "value": 1,
+            "label": "Engenharia"
+        },
+        {
+            "value": 2,
+            "label": "Empreendimentos"
+        }
+    ]
+    ,"subcategorias": 
+    [
+         {
+            "value": 1,
             "label": "Engenharia",
-            "ordem": 1,
-            "options": 
-            [
+            "options": [
                 {
-                    "label": "Nova Vistoria",
-                    "ordem": 1
+                    "label": "Pessoa Física",
+                    "value": 3,
+                    "categoria": 1
+                }
+            ]
+        }
+        ,
+        {
+            "value": 2,
+            "label": "Empreendimentos",
+            "options": [
+                {
+                    "label": "Teste Sub-categoria",
+                    "value": 4,
+                    "categoria": 2
+                }
+            ]
+        }
+        
+    ]
+    ,"atividades": 
+    [
+        {
+            "label": "Pessoa Física",
+            "value": 3,
+            "categoria": 1,
+            "options": [
+                {
+                    "label": "Avaliação de Imóveis",
+                    "value": 5,
+                    "subcategoria": 3
                 }
             ]
         },
         {
-            "value": 2,
-            "label": "Empreendimentos",
-            "ordem": 2,
-            "options": 
-            [
+            "label": "Teste Sub-categoria",
+            "value": 4,
+            "categoria": 2,
+            "options": [
                 {
-                    "label": "Alocação",
-                    "value": 1,
-                    "options": 
-                    [
-                        {
-                            "label": "Contratação",
-                            "value": 1
-                        },
-                        {
-                            "label": "Liberação de Recursos",
-                            "value": 1
-                        }
-                    ]
-                },
-                {
-                    "label": "Teste",
-                    "value": 1,
-                    "options": 
-                    [
-                        {
-                            "label": "Teste 1",
-                            "value": 1
-                        },
-                        {
-                            "label": "Teste 2",
-                            "value": 1
-                        }
-                    ]
+                    "label": "Teste Atividade",
+                    "value": 6,
+                    "subcategoria": 4
                 }
             ]
         }
+        
     ]
 }

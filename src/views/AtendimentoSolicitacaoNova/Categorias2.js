@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Button, Form, Label, FormGroup } from 'reactstrap';
-import Select from 'react-select';
+import AsyncSelect from 'react-select/lib/Async'
 
 import axios from 'axios';
 
@@ -33,46 +33,45 @@ const formatGroupLabel = data => (
   </div>
 );
 
-const isCategoriaSelecionada = categoria_sel => item => item.categoria === categoria_sel;
-const isSubCategoriaSelecionada = subcategoria_sel => item => item.subcategoria === subcategoria_sel;
+const getCategorias = () => {
+  return axios.get(PATH_CATEGORIAS).then( (reponse) => reponse.data)
+};
+
+const getSubcategorias = (categoria) => {
+    if(categoria){
+        return axios.get(PATH_SUBCATEGORIAS).then( (reponse) => reponse.data.filter(i => i.categoria === categoria))
+    } else {
+        return axios.get(PATH_SUBCATEGORIAS).then( (reponse) => reponse.data)
+    }
+};
+
+const getAtividades = (subcategoria) => {
+  return axios.get(PATH_ATIVIDADES).then( (reponse) => reponse.data.filter(i => i.subcategoria === subcategoria))
+};
 
 class Categorias extends Component {
     constructor(props) {
         super(props);
-
-        this.setCategorias = this.setCategorias.bind(this);
-        this.setSubcategorias = this.setSubcategorias.bind(this);
-        this.setAtividades = this.setAtividades.bind(this);
 
         this.onCategoriaChange = this.onCategoriaChange.bind(this);
         this.onSubCategoriaChange = this.onSubCategoriaChange.bind(this);
         this.onAtividadeChange = this.onAtividadeChange.bind(this);
 
         this.state = {
-            categorias: []
-            ,subcategorias: []
-            ,atividades: []
-            ,categoria_sel: null
+            categoria_sel: null
             ,sub_categoria_sel: null
             ,atividade_sel: null
         };
     }
 
-    setCategorias(categorias) {
-        this.setState({ categorias });
-    }
+    onCategoriaChange(newValue, actionMeta) {
+        console.group('Categoria Changed');
+        console.log(newValue);
+        console.log(`action: ${actionMeta.action}`);
+        console.groupEnd();
+        this.setState({ categoria_sel: newValue });
 
-    setSubcategorias(subcategorias) {
-        this.setState({ subcategorias, });
-    }
-
-    setAtividades(atividades) {
-        this.setState({ atividades });
-    }
-
-    onCategoriaChange(newValue, actionMeta) 
-    {
-        this.setState({ categoria_sel: (newValue) ? newValue.value : null });
+        getSubcategorias(this.state.categoria_sel);
     }
 
     onSubCategoriaChange(newValue, actionMeta) {
@@ -91,62 +90,28 @@ class Categorias extends Component {
         this.setState({ atividade_sel: newValue });
     }
 
-    componentWillMount() 
-    {
-        axios.get(PATH_CATEGORIAS)
-        .then((result) => {
-            const categorias = result.data
-            console.log("COMPONENT WILL Mount messages : ", categorias);
-            this.setState({ 
-            categorias: categorias
-            })
-        })
-
-        axios.get(PATH_SUBCATEGORIAS)
-        .then((result) => {
-            const subcategorias = result.data
-            console.log("COMPONENT WILL Mount messages : ", subcategorias);
-            this.setState({ 
-                subcategorias: subcategorias
-            })
-        })
-
-        axios.get(PATH_ATIVIDADES)
-        .then((result) => {
-            const atividades = result.data
-            console.log("COMPONENT WILL Mount messages : ", atividades);
-            this.setState({ 
-                atividades: atividades
-            })
-        })
-    }
-
     render() 
     {
         console.log(this.state.categorias);
-
-        if (!this.state.categorias) { return null; }
-        if (!this.state.subcategorias) { return null; }
-        if (!this.state.atividades) { return null; }
 
         return(
             <Form>
                 <FormGroup row>
                     <Label className="label-caixa-form" sm={2} for="exampleSelectMulti">Categoria:</Label>
                     <Col sm={10}>
-                       <Select className="select-caixa" autoFocus options={this.state.categorias} onChange={this.onCategoriaChange} isClearable={true} />
+                       <AsyncSelect cacheOptions defaultOptions autoFocus loadOptions={getCategorias} onChange={this.onCategoriaChange} />
                     </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label className="label-caixa-form" sm={2} for="exampleSelectMulti">Sub-Categoria:</Label>
                     <Col sm={10}>
-                        <Select options={this.state.subcategorias.filter(isCategoriaSelecionada(this.state.categoria_sel))} onChange={this.onSubCategoriaChange}   />
+                        <AsyncSelect cacheOptions defaultOptions autoFocus loadOptions={getSubcategorias} onChange={this.onSubCategoriaChange} />
                     </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label className="label-caixa-form" sm={2} for="exampleSelectMulti">Atividade:</Label>
                     <Col sm={10}>
-                        <Select options={this.state.atividades} onChange={this.onAtividadeChange} />
+                        <AsyncSelect cacheOptions defaultOptions autoFocus loadOptions={getAtividades} onChange={this.onAtividadeChange} />
                     </Col>
                 </FormGroup>
                 <Button outline color="primary" size="sm" onClick={this._validate}>Avançar</Button>

@@ -17,7 +17,7 @@ const imprimeMenu = (item, key) => {
     {
         return (
         <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
+            <DropdownToggle key={key} nav caret>
                 {item.title}
             </DropdownToggle>
             <DropdownMenu right>
@@ -31,12 +31,13 @@ const imprimeMenu = (item, key) => {
     else
     {
         return (
-        <NavItem>
-            <NavLink href={item.endereco}>{item.title}</NavLink>
+        <NavItem >
+            <NavLink key={key} href={item.endereco}>{item.title}</NavLink>
         </NavItem>
         );
     }
 };
+
 
 class Menu extends Component {
 
