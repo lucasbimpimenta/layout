@@ -58,6 +58,11 @@
                     "label": "Pessoa Física",
                     "value": 3,
                     "categoria": 1
+                },
+                {
+                    "label": "Pessoa Juridica",
+                    "value": 7,
+                    "categoria": 1
                 }
             ]
         }
@@ -97,6 +102,11 @@
                 {
                     "label": "Teste Atividade",
                     "value": 6,
+                    "subcategoria": 4
+                },
+                {
+                    "label": "Teste Atividade 2",
+                    "value": 8,
                     "subcategoria": 4
                 }
             ]

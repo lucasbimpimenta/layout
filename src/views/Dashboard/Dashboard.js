@@ -7,7 +7,7 @@ class Dashboard extends Component {
 
         return (
             <Row>
-                <h3 class="titulo">Início</h3>
+                <h3 className="titulo">Início</h3>
             </Row>
         )
     }

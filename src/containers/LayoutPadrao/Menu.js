@@ -12,31 +12,37 @@ import axios from 'axios';
 
 const PATH_BASE = 'http://localhost:3001/menus';
 
-const imprimeMenu = (item, key) => {
-    if(item.filhos && item.filhos.length > 0)
+class OpcoesMenu extends Component {
+
+    render() 
     {
-        return (
-        <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle key={key} nav caret>
-                {item.title}
-            </DropdownToggle>
-            <DropdownMenu right>
-            {item.filhos.sort(function(a, b) { return a.ordem - b.ordem; }).map((filho, idx) =>
-               <DropdownItem key={idx} tag="a" href={filho.endereco}>{filho.title}</DropdownItem>
-            )}
-            </DropdownMenu>
-        </UncontrolledDropdown>
-        );
+        const { item } = this.props;
+
+        if(item.filhos && item.filhos.length > 0)
+        {
+            return (
+            <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle  nav caret>
+                    {item.title}
+                </DropdownToggle>
+                <DropdownMenu right>
+                {item.filhos.sort(function(a, b) { return a.ordem - b.ordem; }).map((filho, idx) =>
+                <DropdownItem key={idx} tag="a" href={filho.endereco}>{filho.title}</DropdownItem>
+                )}
+                </DropdownMenu>
+            </UncontrolledDropdown>
+            );
+        }
+        else
+        {
+            return (
+            <NavItem >
+                <NavLink href={item.endereco}>{item.title}</NavLink>
+            </NavItem>
+            );
+        }
     }
-    else
-    {
-        return (
-        <NavItem >
-            <NavLink key={key} href={item.endereco}>{item.title}</NavLink>
-        </NavItem>
-        );
-    }
-};
+}
 
 
 class Menu extends Component {
@@ -68,7 +74,7 @@ class Menu extends Component {
         return (
 
             this.state.menus_permitidos.sort(function(a, b) { return a.ordem - b.ordem; }).map((item, idx) =>
-               imprimeMenu(item, idx)
+               <OpcoesMenu item={item} key={idx}/>
             )
         );
     }

@@ -33,13 +33,13 @@ const formatGroupLabel = data => (
   </div>
 );
 
-const isCategoriaSelecionada = categoria_sel => item => (categoria_sel) ? item.value === categoria_sel : item.value !== '';
-const isSubCategoriaSelecionada = subcategoria_sel => item => (subcategoria_sel) ? item.value === subcategoria_sel : item.value !== '';
+const isCategoriaSelecionada = categoria_sel => item => (categoria_sel) ? item.value === categoria_sel.value : item.value !== '';
+const isSubCategoriaSelecionada = subcategoria_sel => item => (subcategoria_sel) ? item.value === subcategoria_sel.value : item.value !== '';
 
 const getItemPorValue = (subMenuItems, value) => {
     if (subMenuItems) {
         for (var i = 0; i < subMenuItems.length; i++) {
-            if (subMenuItems[i].value == value) {
+            if (subMenuItems[i].value === value) {
                 return subMenuItems[i];
             }
             var found = getItemPorValue(subMenuItems[i].options, value);
@@ -84,18 +84,22 @@ class Categorias extends Component {
 
     onCategoriaChange(newValue, actionMeta) 
     {
-        this.setState({ categoria_sel: (newValue) ? newValue.value : null });
+        this.setState({ categoria_sel: (newValue) ? newValue : null, sub_categoria_sel: null, atividade_sel: null });
     }
 
     onSubCategoriaChange(newValue, actionMeta) {
-        this.setState({ sub_categoria_sel: (newValue) ? newValue.value : null });
+        this.setState({ sub_categoria_sel: (newValue) ? newValue : null, atividade_sel: null });
+        const item = getItemPorValue(this.state.subcategorias, (newValue) ? newValue.categoria : null);
+        this.setState({ categoria_sel: (item) ? item : null });
     }
 
     onAtividadeChange(newValue, actionMeta) {
-        this.setState({ atividade_sel: (newValue) ? newValue.value : null });
-        //console.log(this.state.atividades.filter(item => item.options && item.options.length > 0));
-        //console.log(this.state.atividades.filter(item => item.options && item.options.length > 0).map( item => item.options.filter(opt => opt.value === 6)));
-        console.log(getItemPorValue(this.state.atividades, 6));
+        this.setState({ atividade_sel: (newValue) ? newValue : null });
+        const item = getItemPorValue(this.state.atividades, (newValue) ? newValue.subcategoria : null);
+        this.setState({ sub_categoria_sel: (item) ? item : null });
+
+        const item2 = getItemPorValue(this.state.subcategorias, (item) ? item.categoria : null);
+        this.setState({ categoria_sel: (item2) ? item2 : null });
     }
 
     componentWillMount() 
@@ -136,22 +140,22 @@ class Categorias extends Component {
                 <FormGroup row>
                     <Label className="label-caixa-form" sm={2} for="exampleSelectMulti">Categoria:</Label>
                     <Col sm={10}>
-                       <Select className="select-caixa" autoFocus options={this.state.categorias} onChange={this.onCategoriaChange} isClearable={true} />
+                       <Select className="select-caixa" autoFocus value={this.state.categoria_sel} selectedValue={this.state.categoria_sel} options={this.state.categorias} onChange={this.onCategoriaChange} isClearable={true} />
                     </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label className="label-caixa-form" sm={2} for="exampleSelectMulti">Sub-Categoria:</Label>
                     <Col sm={10}>
-                        <Select formatGroupLabel={formatGroupLabel}  options={this.state.subcategorias.filter(isCategoriaSelecionada(this.state.categoria_sel))} onChange={this.onSubCategoriaChange} isClearable={true} />
+                        <Select formatGroupLabel={formatGroupLabel} value={this.state.sub_categoria_sel}  selectedValue={this.state.sub_categoria_sel}  options={this.state.subcategorias.filter(isCategoriaSelecionada(this.state.categoria_sel) )} onChange={this.onSubCategoriaChange} isClearable={true} />
                     </Col>
                 </FormGroup>
                 <FormGroup row>
                     <Label className="label-caixa-form" sm={2} for="exampleSelectMulti">Atividade:</Label>
                     <Col sm={10}>
-                        <Select formatGroupLabel={formatGroupLabel}  options={this.state.atividades.filter(isSubCategoriaSelecionada(this.state.sub_categoria_sel))} onChange={this.onAtividadeChange} isClearable={true} />
+                        <Select formatGroupLabel={formatGroupLabel} value={this.state.atividade_sel} selectedValue={this.state.atividade_sel} options={this.state.atividades.filter(isSubCategoriaSelecionada(this.state.sub_categoria_sel))} onChange={this.onAtividadeChange} isClearable={true} />
                     </Col>
                 </FormGroup>
-                <Button outline disabled={(this.state.atividade_sel) ? false : true} color="primary" size="sm" onClick={this._validate}>Avançar</Button>
+                <Button outline disabled={(this.state.atividade_sel) ? false : true} color="primary" size="sm" onClick={this.props.nextStep}>Avançar</Button>
             </Form>
         );
     }
