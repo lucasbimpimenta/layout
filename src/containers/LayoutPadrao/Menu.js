@@ -10,7 +10,7 @@ import {
 
 import axios from 'axios';
 
-const PATH_BASE = ' http://localhost:3001/menus';
+const PATH_BASE = 'http://localhost:3001/menus';
 
 const imprimeMenu = (item, key) => {
     if(item.filhos && item.filhos.length > 0)
