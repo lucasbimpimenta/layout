@@ -7,6 +7,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import './vendors/@caixa-ui/bootstrap/dist/themes/cosmo.css';
 import './vendors/@caixa-ui/bootstrap/dist/themes/novo-condensed.css';
+import './vendors/@caixa-ui/bootstrap/dist/themes/progress-wizard.min.css';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 registerServiceWorker();

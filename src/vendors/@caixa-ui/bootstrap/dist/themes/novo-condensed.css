@@ -179,3 +179,27 @@ input[type=text].input-caixa, .select-caixa {
     margin-right: 39px;
 }
 */
+
+.progress-indicator.custom-complex {
+    background-color: #FFFFFF;
+    padding: 10px 0px;
+    border: 0px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 11px; 
+}
+.progress-indicator.custom-complex > li
+{
+cursor: pointer;
+}
+.progress-indicator.custom-complex > li .bubble {
+    height: 8px;
+    width: 99%;
+    border-radius: 2px;
+    box-shadow: inset -5px 0 12px rgba(0, 0, 0, 0.2);
+    
+}
+.progress-indicator.custom-complex > li .bubble:before,
+.progress-indicator.custom-complex > li .bubble:after {
+    display: none;
+}

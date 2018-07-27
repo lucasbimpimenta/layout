@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button } from 'reactstrap';
 import {StepWizard, Step} from 'react-step-wizard';
+import StepZilla from 'react-stepzilla';
 
 import Categorias from './Categorias';
+import Finalizacao from './Finalizacao';
+import DadosIniciais from './DadosIniciais';
+
+let animacoes_wizard = {
+  enterRight: 'fadeIn',
+  enterLeft : 'fadeIn',
+  exitRight : 'fadeOut',
+  exitLeft  : 'fadeOut'
+}
 
 class AtendimentoSolicitacaoNova extends Component {
 
@@ -20,9 +30,10 @@ class AtendimentoSolicitacaoNova extends Component {
                 </Row>
                 <Row>
                     <Col xs={12} md={12} className="">
-                        <StepWizard>
+                        <StepWizard transitions={animacoes_wizard} >
                             <Step><Categorias/></Step>
-                            <Step><Categorias/></Step>
+                            <Step><DadosIniciais/></Step>
+                            <Step><Finalizacao/></Step>
                         </StepWizard>
                     </Col>
                 </Row>

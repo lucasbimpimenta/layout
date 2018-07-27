@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Col, Button, Form, Label, FormGroup } from 'reactstrap';
+import { Col, Button, Form, Label, FormGroup, Row } from 'reactstrap';
 import Select from 'react-select';
+import ProgressoPassos from './ProgressoPassos';
 
 import axios from 'axios';
 
@@ -137,6 +138,9 @@ class Categorias extends Component {
 
         return(
             <Form>
+                <Row>
+                    <ProgressoPassos fase_atual={1} propriedades={this.props}/>
+                 </Row>
                 <FormGroup row>
                     <Label className="label-caixa-form" sm={2} for="exampleSelectMulti">Categoria:</Label>
                     <Col sm={10}>
