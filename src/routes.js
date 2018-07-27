@@ -13,12 +13,12 @@ const Dashboard = Loadable({
 });
 
 const AtendimentoSolicitacao = Loadable({
-  loader: () => import('./views/AtendimentoSolicitacao'),
+  loader: () => import('./views/Atendimento/AtendimentoSolicitacao'),
   loading: Loading,
 });
 
 const AtendimentoSolicitacaoNova = Loadable({
-  loader: () => import('./views/AtendimentoSolicitacaoNova'),
+  loader: () => import('./views/Atendimento/AtendimentoSolicitacaoNova'),
   loading: Loading,
 });
 

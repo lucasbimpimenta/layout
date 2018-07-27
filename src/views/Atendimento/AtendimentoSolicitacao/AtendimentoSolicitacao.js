@@ -4,7 +4,7 @@ import { matchRoutes } from 'react-router-config'
 import { Route, Switch, withRouter } from 'react-router-dom';
 
 // routes config
-import routes from '../../routes';
+import routes from '../../../routes';
 
 class AtendimentoSolicitacao extends Component {
     constructor(props) {

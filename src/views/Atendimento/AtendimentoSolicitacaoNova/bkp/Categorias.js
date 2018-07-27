@@ -142,6 +142,8 @@ class Categorias extends Component {
         if (!this.state.subcategorias)  { return null; }
         if (!this.state.atividades)     { return null; }
 
+        if(this.state.atividade_sel) {this.props.onChange(this.state.atividade_sel.value)}
+
         return(
             <Form>
                 <Row>

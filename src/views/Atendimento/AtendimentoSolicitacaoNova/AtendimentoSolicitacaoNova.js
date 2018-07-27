@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import {StepWizard, Step} from 'react-step-wizard';
 
-import Categorias from './Categorias';
+import TipoSolicitacao from './TipoSolicitacao';
 import Finalizacao from './Finalizacao';
 import DadosIniciais from './DadosIniciais';
 
 let animacoes_wizard = {
   enterRight: 'fadeIn',
-  enterLeft : 'fadeIn',
+  enterLeft : 'fadeInn',
   exitRight : 'fadeOut',
   exitLeft  : 'fadeOut'
 }
@@ -22,15 +22,16 @@ class AtendimentoSolicitacaoNova extends Component {
         this.setTipoSolicitacao = this.setTipoSolicitacao.bind(this);
 
         this.state = {
-            tipo_selecionado: null,
             dados_iniciais: null,
             gravado: false
         }
+
+        this.tipo_selecionado = null;
     }
 
     setTipoSolicitacao(tipo_selecionado) {
-        this.setState({ tipo_selecionado });
-        console.log(this.state.tipo_selecionado);
+        this.tipo_selecionado = tipo_selecionado;
+        console.log(this.tipo_selecionado);
     }
 
     render() {
@@ -43,7 +44,7 @@ class AtendimentoSolicitacaoNova extends Component {
                 <Row>
                     <Col xs={12} md={12} className="">
                         <StepWizard transitions={animacoes_wizard} >
-                            <Step><Categorias onChange={this.setTipoSolicitacao}/></Step>
+                            <Step><TipoSolicitacao onChange={this.setTipoSolicitacao}/></Step>
                             <Step><DadosIniciais matriz={this}/></Step>
                             <Step><Finalizacao matriz={this}/></Step>
                         </StepWizard>
