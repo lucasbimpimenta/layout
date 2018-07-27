@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import {StepWizard, Step} from 'react-step-wizard';
-import StepZilla from 'react-stepzilla';
 
 import Categorias from './Categorias';
 import Finalizacao from './Finalizacao';
@@ -19,6 +18,19 @@ class AtendimentoSolicitacaoNova extends Component {
     constructor(props) 
     {
         super(props);
+
+        this.setTipoSolicitacao = this.setTipoSolicitacao.bind(this);
+
+        this.state = {
+            tipo_selecionado: null,
+            dados_iniciais: null,
+            gravado: false
+        }
+    }
+
+    setTipoSolicitacao(tipo_selecionado) {
+        this.setState({ tipo_selecionado });
+        console.log(this.state.tipo_selecionado);
     }
 
     render() {
@@ -31,9 +43,9 @@ class AtendimentoSolicitacaoNova extends Component {
                 <Row>
                     <Col xs={12} md={12} className="">
                         <StepWizard transitions={animacoes_wizard} >
-                            <Step><Categorias/></Step>
-                            <Step><DadosIniciais/></Step>
-                            <Step><Finalizacao/></Step>
+                            <Step><Categorias onChange={this.setTipoSolicitacao}/></Step>
+                            <Step><DadosIniciais matriz={this}/></Step>
+                            <Step><Finalizacao matriz={this}/></Step>
                         </StepWizard>
                     </Col>
                 </Row>

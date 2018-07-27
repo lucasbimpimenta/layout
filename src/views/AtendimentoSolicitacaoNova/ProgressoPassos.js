@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button } from 'reactstrap';
+import { Col } from 'reactstrap';
 
 class ProgressoPassos extends Component {
 
-    constructor(props) 
-    {
-        super(props);
-    }
-
     render ()
     {
-        const { fase_atual, propriedades } = this.props;
+        const { fase_atual, propriedades, desativaProx } = this.props;
 
         return(
 
@@ -21,12 +16,12 @@ class ProgressoPassos extends Component {
                             <i className={(fase_atual > 1) ? "fa fa-check-circle" : (fase_atual === 1) ? "" : "" }></i>&nbsp;
                             Tipo de Solicitação
                         </li>
-                        <li className={(fase_atual > 2) ? "completed" : (fase_atual === 2) ? "active" : "" } onClick={()=>propriedades.goToStep(2)}>
+                        <li className={(fase_atual > 2) ? "completed" : (fase_atual === 2) ? "active" : "" } onClick={(desativaProx && fase_atual < 2)? () => {return null} : ()=>propriedades.goToStep(2)}>
                                 <span className="bubble"></span>
                                 <i className={(fase_atual > 2) ? "fa fa-check-circle" : (fase_atual === 2) ? "" : "" }></i>&nbsp;
                                 Dados Iniciais
                         </li>
-                        <li className={(fase_atual > 3) ? "completed" : (fase_atual === 3) ? "active" : "" } onClick={()=>propriedades.goToStep(3)}>
+                        <li className={(fase_atual > 3) ? "completed" : (fase_atual === 3) ? "active" : "" } onClick={(desativaProx && fase_atual < 3)? () => {return null} : ()=>propriedades.goToStep(2)}>
                             <span className="bubble"></span>
                             <i className={(fase_atual > 3) ? "fa fa-check-circle" : (fase_atual === 3) ? "" : "" }></i>&nbsp;
                             Finalizar solicitação

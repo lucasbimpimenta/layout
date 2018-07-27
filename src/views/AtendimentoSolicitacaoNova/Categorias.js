@@ -88,19 +88,25 @@ class Categorias extends Component {
         this.setState({ categoria_sel: (newValue) ? newValue : null, sub_categoria_sel: null, atividade_sel: null });
     }
 
-    onSubCategoriaChange(newValue, actionMeta) {
+    onSubCategoriaChange(newValue, actionMeta) 
+    {
         this.setState({ sub_categoria_sel: (newValue) ? newValue : null, atividade_sel: null });
         const item = getItemPorValue(this.state.subcategorias, (newValue) ? newValue.categoria : null);
+
         this.setState({ categoria_sel: (item) ? item : null });
     }
 
-    onAtividadeChange(newValue, actionMeta) {
-        this.setState({ atividade_sel: (newValue) ? newValue : null });
+    onAtividadeChange(newValue, actionMeta, matriz) 
+    {
+        //console.log('actionMeta', actionMeta);
+
         const item = getItemPorValue(this.state.atividades, (newValue) ? newValue.subcategoria : null);
         this.setState({ sub_categoria_sel: (item) ? item : null });
 
         const item2 = getItemPorValue(this.state.subcategorias, (item) ? item.categoria : null);
         this.setState({ categoria_sel: (item2) ? item2 : null });
+
+        this.setState({ atividade_sel: (newValue) ? newValue : null });
     }
 
     componentWillMount() 
@@ -132,34 +138,56 @@ class Categorias extends Component {
 
     render() 
     {
-        if (!this.state.categorias) { return null; }
-        if (!this.state.subcategorias) { return null; }
-        if (!this.state.atividades) { return null; }
+        if (!this.state.categorias)     { return null; }
+        if (!this.state.subcategorias)  { return null; }
+        if (!this.state.atividades)     { return null; }
 
         return(
             <Form>
                 <Row>
-                    <ProgressoPassos fase_atual={1} propriedades={this.props}/>
+                    <ProgressoPassos fase_atual={1} propriedades={this.props} desativaProx={(this.state.atividade_sel) ? false : true}/>
                  </Row>
                 <FormGroup row>
-                    <Label className="label-caixa-form" sm={2} for="exampleSelectMulti">Categoria:</Label>
-                    <Col sm={10}>
-                       <Select className="select-caixa" autoFocus value={this.state.categoria_sel} selectedValue={this.state.categoria_sel} options={this.state.categorias} onChange={this.onCategoriaChange} isClearable={true} />
+                    <Label className="label-caixa-form" sm={1} for="exampleSelectMulti">Categoria:</Label>
+                    <Col sm={11}>
+                       <Select 
+                            className="select-caixa" 
+                            autoFocus 
+                            value={this.state.categoria_sel} 
+                            selectedValue={this.state.categoria_sel} 
+                            options={this.state.categorias} 
+                            onChange={this.onCategoriaChange} 
+                            isClearable={true}
+                        />
                     </Col>
                 </FormGroup>
                 <FormGroup row>
-                    <Label className="label-caixa-form" sm={2} for="exampleSelectMulti">Sub-Categoria:</Label>
-                    <Col sm={10}>
-                        <Select formatGroupLabel={formatGroupLabel} value={this.state.sub_categoria_sel}  selectedValue={this.state.sub_categoria_sel}  options={this.state.subcategorias.filter(isCategoriaSelecionada(this.state.categoria_sel) )} onChange={this.onSubCategoriaChange} isClearable={true} />
+                    <Label className="label-caixa-form" sm={1} for="exampleSelectMulti">Tipo:</Label>
+                    <Col sm={11}>
+                        <Select 
+                            formatGroupLabel={formatGroupLabel} 
+                            value={this.state.sub_categoria_sel}  
+                            selectedValue={this.state.sub_categoria_sel}  
+                            options={this.state.subcategorias.filter(isCategoriaSelecionada(this.state.categoria_sel))} 
+                            onChange={this.onSubCategoriaChange} isClearable={true} 
+                        />
                     </Col>
                 </FormGroup>
                 <FormGroup row>
-                    <Label className="label-caixa-form" sm={2} for="exampleSelectMulti">Atividade:</Label>
-                    <Col sm={10}>
-                        <Select formatGroupLabel={formatGroupLabel} value={this.state.atividade_sel} selectedValue={this.state.atividade_sel} options={this.state.atividades.filter(isSubCategoriaSelecionada(this.state.sub_categoria_sel))} onChange={this.onAtividadeChange} isClearable={true} />
+                    <Label className="label-caixa-form" sm={1} for="exampleSelectMulti">Atividade:</Label>
+                    <Col sm={11}>
+                        <Select 
+                            formatGroupLabel={formatGroupLabel} 
+                            value={this.state.atividade_sel} 
+                            selectedValue={this.state.atividade_sel} 
+                            options={this.state.atividades.filter(isSubCategoriaSelecionada(this.state.sub_categoria_sel))} 
+                            onChange={this.onAtividadeChange} isClearable={true} 
+                        />
                     </Col>
                 </FormGroup>
-                <Button outline disabled={(this.state.atividade_sel) ? false : true} color="primary" size="sm" onClick={this.props.nextStep}>Avançar</Button>
+                <div className="clearfix" style={{ padding: '.5rem' }}>
+                    <Button className="float-right" disabled={(this.state.atividade_sel) ? false : true} color="primary" size="sm" onClick={this.props.nextStep} >Avançar</Button>
+                </div>
             </Form>
         );
     }
