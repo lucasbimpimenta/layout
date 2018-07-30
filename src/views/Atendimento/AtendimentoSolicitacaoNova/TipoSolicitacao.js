@@ -4,24 +4,14 @@ import { Col, Button, Form, Label, FormGroup, Row } from 'reactstrap';
 import ProgressoPassos from './ProgressoPassos';
 import Atividade from '../Comuns/Atividade';
 
-class TipoSolicitacao extends Component {
-    constructor(props) {
-        super(props);
+class TipoSolicitacao extends Component {    
+    state = { atividade_sel: null }
 
-        this.setAtividade = this.setAtividade.bind(this);
-
-        this.state = {
-            atividade_sel: null
-        };
-    }
-
-    setAtividade(atividade_sel) {
+    setAtividade = (atividade_sel) => {
         this.setState({ atividade_sel });
-        console.log(this.state.atividade_sel)
     }
 
-    render() 
-    {
+    render() {
         return(
             <Form>
                 <Row>
@@ -44,7 +34,7 @@ class TipoSolicitacao extends Component {
                     </Col>
                 </FormGroup>
                 <div className="clearfix" style={{ padding: '.5rem' }}>
-                    <Button className="float-right" disabled={(this.state.atividade_sel) ? false : true} color="primary" size="sm" onClick={this.props.nextStep} >Avançar</Button>
+                    <Button className="float-right" disabled={!!this.state.atividade_sel} color="primary" size="sm" onClick={this.props.nextStep} >Avançar</Button>
                 </div>
             </Form>
         );

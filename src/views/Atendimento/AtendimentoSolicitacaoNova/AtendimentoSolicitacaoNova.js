@@ -31,7 +31,7 @@ class AtendimentoSolicitacaoNova extends Component {
 
     setTipoSolicitacao(tipo_selecionado) {
         this.tipo_selecionado = tipo_selecionado;
-        console.log(this.tipo_selecionado);
+        console.log("Componente Atendimento",this.tipo_selecionado);
     }
 
     render() {

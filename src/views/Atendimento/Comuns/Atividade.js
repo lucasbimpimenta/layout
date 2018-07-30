@@ -58,7 +58,7 @@ class Atividade extends Component {
 
     render() 
     {
-        if (!this.state.atividades)     { return null; }
+        if(!this.state.atividades)     { return null; }
 
         if(this.props.somente_leitura)
         {
