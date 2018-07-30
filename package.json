@@ -15,7 +15,7 @@
     "react-select": "^2.0.0",
     "react-step-wizard": "^2.0.0",
     "react-stepzilla": "^4.7.2",
-    "reactstrap": "^6.3.0"
+    "reactstrap": "^6.3.1"
   },
   "scripts": {
     "start": "start json-server src/api/db.json --port 3001 & react-scripts start",

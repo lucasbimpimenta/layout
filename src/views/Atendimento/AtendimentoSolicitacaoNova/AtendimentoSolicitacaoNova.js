@@ -1,17 +1,7 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'reactstrap';
-import {StepWizard, Step} from 'react-step-wizard';
+import { Row, Col, Form, Button, Label, FormGroup } from 'reactstrap';
 
-import TipoSolicitacao from './TipoSolicitacao';
-import Finalizacao from './Finalizacao';
-import DadosIniciais from './DadosIniciais';
-
-let animacoes_wizard = {
-  enterRight: 'fadeIn',
-  enterLeft : 'fadeInn',
-  exitRight : 'fadeOut',
-  exitLeft  : 'fadeOut'
-}
+import Atividade from '../Comuns/Atividade';
 
 class AtendimentoSolicitacaoNova extends Component {
 
@@ -29,13 +19,15 @@ class AtendimentoSolicitacaoNova extends Component {
         this.tipo_selecionado = null;
     }
 
-    setTipoSolicitacao(tipo_selecionado) {
+    setTipoSolicitacao(tipo_selecionado) 
+    {
         this.tipo_selecionado = tipo_selecionado;
         console.log("Componente Atendimento",this.tipo_selecionado);
     }
 
     render() {
 
+        console.log("tipo_selecionado ", !this.tipo_selecionado);
         return (
             <div>
                 <Row>
@@ -43,11 +35,27 @@ class AtendimentoSolicitacaoNova extends Component {
                 </Row>
                 <Row>
                     <Col xs={12} md={12} className="">
-                        <StepWizard transitions={animacoes_wizard} >
-                            <Step><TipoSolicitacao onChange={this.setTipoSolicitacao}/></Step>
-                            <Step><DadosIniciais matriz={this}/></Step>
-                            <Step><Finalizacao matriz={this}/></Step>
-                        </StepWizard>
+                        <Form>
+                            <FormGroup row>
+                                <Label className="label-caixa-form" sm={1} for="exampleSelectMulti">Categoria:</Label>
+                                <Col sm={11}>
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label className="label-caixa-form" sm={1} for="exampleSelectMulti">Tipo:</Label>
+                                <Col sm={11}>
+                                </Col>
+                            </FormGroup>
+                            <FormGroup row>
+                                <Label className="label-caixa-form" sm={1} for="exampleSelectMulti">Atividade:</Label>
+                                <Col sm={11}>
+                                    <Atividade onChange={this.setTipoSolicitacao} somente_leitura={false}/>
+                                </Col>
+                            </FormGroup>
+                            <div className="clearfix" style={{ padding: '.5rem' }}>
+                                <Button className="float-right" disabled={!this.tipo_selecionado} color="primary" size="sm" >Solicitar</Button>
+                            </div>
+                        </Form>
                     </Col>
                 </Row>
             </div>

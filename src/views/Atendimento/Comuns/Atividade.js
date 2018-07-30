@@ -35,6 +35,7 @@ class Atividade extends Component {
         super(props);
 
         this.setAtividades = this.setAtividades.bind(this);
+        this.setAtividadeSelecionada = this.setAtividadeSelecionada.bind(this);
 
         this.state = {
             atividade_selecionada: null
@@ -44,6 +45,12 @@ class Atividade extends Component {
 
     setAtividades(atividades) {
         this.setState({ atividades });
+    }
+
+     setAtividadeSelecionada(atividade_selecionada) {
+        this.setState({ atividade_selecionada });
+        console.log("atividade_selecionada", atividade_selecionada)
+        this.props.onChange(atividade_selecionada);
     }
 
     componentWillMount() 
@@ -75,7 +82,7 @@ class Atividade extends Component {
                     value={this.state.atividade_sel} 
                     selectedValue={this.state.atividade_sel} 
                     options={this.state.atividades} 
-                    onChange={this.props.onChange} isClearable={true} 
+                    onChange={this.setAtividadeSelecionada} isClearable={true} 
                 />
             );
         }
